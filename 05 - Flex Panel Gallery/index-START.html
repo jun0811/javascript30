@@ -55,7 +55,18 @@
         justify-content: center;
         flex-direction: column;
       }
-
+      .panel > *:first-child {
+        transform: translateY(-100%);
+      }
+      .panel > *:last-child {
+        transform: translateY(100%);
+      }
+      .panel.open-active > *:first-child {
+        transform: translateY(0);
+      }
+      .panel.open-active > *:last-child {
+        transform: translateY(0);
+      }
       .panel1 {
         background-image: url(https://source.unsplash.com/gYl-UtwNg_I/1500x1500);
       }
@@ -96,6 +107,7 @@
       }
 
       .panel.open {
+        flex: 4;
         font-size: 40px;
       }
     </style>
@@ -128,6 +140,19 @@
       </div>
     </div>
 
-    <script></script>
+    <script>
+      const panels = document.querySelectorAll(".panel");
+      function toggleOpen() {
+        this.classList.toggle("open");
+      }
+      function openActive(e) {
+        if (e.propertyName.includes("flex"))
+          this.classList.toggle("open-active");
+      }
+      panels.forEach((panel) => panel.addEventListener("click", toggleOpen));
+      panels.forEach((panel) =>
+        panel.addEventListener("transitionend", openActive)
+      );
+    </script>
   </body>
 </html>
