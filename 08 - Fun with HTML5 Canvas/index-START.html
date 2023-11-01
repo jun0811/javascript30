@@ -15,7 +15,7 @@
       ctx.strokeStyle = "#BADA33";
       ctx.lineJoin = "round";
       ctx.lineCap = "round";
-      ctx.lineWidth = 100;
+      ctx.lineWidth = 50;
       let isDrawing = false;
       let direction = true;
       let hue = 0;
@@ -23,6 +23,7 @@
       let lastY = 0;
       function draw(e) {
         if (!isDrawing) return;
+        ctx.strokeStyle = `hsl(${hue} , 100%, 50%)`;
         ctx.beginPath();
         ctx.moveTo(lastX, lastY);
         ctx.lineTo(lastX, lastY);
@@ -33,8 +34,7 @@
         if (hue >= 360) {
           hue = 0;
         }
-        ctx.strokeStyle = `hsl(${hue} , 100%, 50%)`;
-        if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+        if (ctx.lineWidth >= 50 || ctx.lineWidth <= 1) {
           direction = !direction;
         }
 
