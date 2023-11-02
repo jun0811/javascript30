@@ -23,7 +23,12 @@ function handleProgress() {
 function handleRange() {
   video[this.name] = this.value;
 }
+
 // video control
+video.addEventListener("seeking", (event) => {
+  console.log("Video is seeking a new position.");
+});
+
 video.addEventListener("click", togglePlay);
 video.addEventListener("play", updateButton);
 video.addEventListener("pause", updateButton);
